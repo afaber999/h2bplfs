@@ -1,0 +1,26 @@
+[package]
+name = "ep_01"
+version = "0.1.0"
+edition = "2021"
+
+
+
+[[bin]]
+name = "ep_01"
+path = "src/ep_01/lexer.rs"
+
+[[bin]]
+name = "ep_02"
+path = "src/ep_02/ast.rs"
+
+[[bin]]
+name = "ep_03"
+path = "src/ep_03/main.rs"
+
+[[bin]]
+name = "ep_04"
+path = "src/ep_04/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
