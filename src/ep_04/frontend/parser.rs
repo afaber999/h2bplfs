@@ -1,6 +1,6 @@
 use std::{iter::Peekable, slice::Iter};
-use crate::lexer::{Lexer, Token, TokenKind};
-use crate::ast::*;
+use crate::frontend::lexer::{Lexer, Token, TokenKind};
+use crate::frontend::ast::*;
 
 #[derive(Debug)]
 pub struct Parser {}
@@ -34,6 +34,10 @@ impl Parser {
         
         let next_token = Self::at(tokens);
         match next_token.kind {
+            TokenKind::Null => { 
+                let token = Self::eat(tokens);
+                Some(AstExpression::NullLiteral(AstNullLiteral{}))
+            }, 
             TokenKind::Number => { 
                 let token = Self::eat(tokens);
                 if let Ok(value) = token.value.parse::<f64>() {
@@ -116,7 +120,7 @@ impl Parser {
         }
     }
 
-    pub fn produce_ast(src_code : &String) -> AstProgram {
+    pub fn produce_ast(src_code : &String) -> AstStatement {
         
         let tokens = Lexer::tokenize(src_code);
         let mut tokens : TokenIter = tokens.iter().peekable();
@@ -138,7 +142,7 @@ impl Parser {
                 break;
             }
         }
-        program
+        AstStatement::Program(program)
     }
 }
 

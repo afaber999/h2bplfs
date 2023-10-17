@@ -1,11 +1,14 @@
 use std::io::{self, Write};
-pub mod lexer;
-pub mod ast;
-pub mod parser;
 
-use parser::Parser;
+pub mod frontend;
+pub mod runtime;
+
+use frontend::parser::Parser;
+use runtime::interpreter::Interpreter;
 
 fn repl() -> io::Result<()> {
+    let mut interpreter = Interpreter::new();
+
     println!("Repl v0.14");
     //let src_code = "let x = ( 10 + 5 ) * 2".to_string();
     loop {
@@ -20,6 +23,10 @@ fn repl() -> io::Result<()> {
 
         let program = Parser::produce_ast(&buffer);
         println!("{:?}", program);
+        
+        let rtval = interpreter.evaluate(&program);
+        println!("{:?}", rtval);
+
     }
     Ok(())
 }
