@@ -165,7 +165,6 @@ impl Parser {
         let mut program = AstProgram{ body : Vec::new()};
 
         loop{
-            println!("IN LOOP CALLING PARSE STATEMENT !!!!!!!!!!!!!!11");
             match Self::parse_statement(&mut tokens) {
                 Some(body) => program.body.push(body),
                 None => {}  

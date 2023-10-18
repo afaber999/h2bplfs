@@ -25,8 +25,9 @@ impl EnvironmentScope {
         self.constants.contains(name)
     }
 
-    pub fn assign(self : &mut Self, name : &str, value : RtValue) {
-        *self.variables.get_mut(name).unwrap() = value;         
+    pub fn assign(self : &mut Self, name : &str, value : RtValue) -> RtValue {
+        *self.variables.get_mut(name).unwrap() = value.clone();
+        value
     }
 
     pub fn list(self: &Self, pre_str: &str) {
@@ -105,7 +106,7 @@ impl Environment {
         }
     }
 
-    pub fn assign_value(self : &mut Self, scope: usize, name : &str, value : RtValue) {
+    pub fn assign_value(self : &mut Self, scope: usize, name : &str, value : RtValue) -> RtValue {
         let scope_nr = self.find_scope(scope, name);
         if scope_nr == 0 {
             panic!("Variable {} not found in scope {}", name, scope);
@@ -114,7 +115,7 @@ impl Environment {
         if scope.is_constant(name) {
             panic!("Can't change constant value: {}", name);
         }
-        scope.assign(name, value);
+        scope.assign(name, value)
     }
 
     fn find_scope(self : &Self , scope: usize, name: &str) -> usize {

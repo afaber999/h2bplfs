@@ -99,9 +99,26 @@ impl Parser {
         Some(left)
     }
 
+    fn parse_assignment_expression(tokens : &mut TokenIter) -> Option<AstExpression> {
+
+        let left = Self::parse_additive_expression(tokens).unwrap();
+
+        if Self::at(tokens).kind == TokenKind::Equals {
+            Self::eat(tokens);            
+            let value = Self::parse_assignment_expression(tokens).unwrap(); // allow chaining
+            let expr = AstAssignmentExpression{ 
+                    assignee : Box::new(left),
+                    value: Box::new(value),
+            };
+            Some( AstExpression::Assignment(expr))
+        } else {
+            Some(left)
+        } 
+    }
+
     fn parse_expression(tokens : &mut TokenIter) -> Option<AstExpression> {
         
-        let expr_option = Self::parse_additive_expression(tokens);
+        let expr_option = Self::parse_assignment_expression(tokens);
         if expr_option.is_some() {
             return expr_option;
         } else {
@@ -165,7 +182,6 @@ impl Parser {
         let mut program = AstProgram{ body : Vec::new()};
 
         loop{
-            println!("IN LOOP CALLING PARSE STATEMENT !!!!!!!!!!!!!!11");
             match Self::parse_statement(&mut tokens) {
                 Some(body) => program.body.push(body),
                 None => {}  

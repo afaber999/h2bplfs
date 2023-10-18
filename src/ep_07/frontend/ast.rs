@@ -8,9 +8,17 @@ pub enum AstStatement {
 
 #[derive(Debug, Clone)]
 pub enum AstExpression {
+    Assignment(AstAssignmentExpression),
     Binary(AstBinaryExpression),
     Identifier(AstIdentifier),
     NumericLiteral(AstNumericLiteral),
+}
+
+
+#[derive(Debug, Clone)]
+pub struct AstAssignmentExpression {
+    pub assignee : Box<AstExpression>,
+    pub value : Box<AstExpression>,
 }
 
 #[derive(Debug, Clone)]

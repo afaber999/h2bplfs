@@ -10,7 +10,7 @@ fn repl() -> io::Result<()> {
     let mut environment = Environment::new();
     let global_scope = environment.create_global_scope();
 
-    println!("Repl v0.16");
+    println!("Repl v0.17");
     //let src_code = "let x = ( 10 + 5 ) * 2".to_string();
     loop {
         print!(">");

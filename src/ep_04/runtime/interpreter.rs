@@ -25,7 +25,6 @@ impl Interpreter {
 
         match (&left_val, &right_val) {
                 (RtValue::NumberVal(x),RtValue::NumberVal(y)) => {
-                    println!("BINARY!!!!!!!!!!!!!!!!!!!!!!!11 {} {}", x, y);
                     match expression.operator.as_str() {
                         "+" => RtValue::NumberVal(x + y), 
                         "-" => RtValue::NumberVal(x - y), 
