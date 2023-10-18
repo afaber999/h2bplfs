@@ -4,12 +4,9 @@ pub mod frontend;
 pub mod runtime;
 
 use frontend::parser::Parser;
-use runtime::interpreter::Interpreter;
-
-use crate::runtime::environment::Environment;
+use crate::runtime::{environment::Environment, interpreter::evaluate};
 
 fn repl() -> io::Result<()> {
-    let mut interpreter = Interpreter::new();
     let mut environment = Environment::new();
     let global_scope = environment.create_global_scope();
 
@@ -28,7 +25,7 @@ fn repl() -> io::Result<()> {
         let program = Parser::produce_ast(&buffer);
         println!("{:?}", program);
         
-        let rtval = interpreter.evaluate(&program, &mut environment, global_scope);
+        let rtval = evaluate(&program, &mut environment, global_scope);
         println!("{:?}", rtval);
 
     }

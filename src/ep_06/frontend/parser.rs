@@ -145,10 +145,8 @@ impl Parser {
 
     fn parse_statement(tokens : &mut TokenIter) -> Option<AstStatement> {
         let next_token = Self::at(tokens);
-        println!("CHECL LET OR CONSTc!!!!!!!!!!!!!!");
 
         if next_token.kind == TokenKind::Let || next_token.kind == TokenKind::Const {
-            println!("parse LET OR CONSTc!!!!!!!!!!!!!!");
             Self::parse_var_declartion(tokens)
         } else {
             // parse when implementing future statements=

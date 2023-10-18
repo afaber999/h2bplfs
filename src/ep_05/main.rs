@@ -30,17 +30,17 @@ fn repl() -> io::Result<()> {
     // environment.list_scope(scope4);
 
 
-    println!("Get value 1 {:?}", environment.get_value(global_scope, "pi"));
-    println!("Get value 2 {:?}", environment.get_value(global_scope, "two_pi"));
-    println!("Get value 3 {:?}", environment.get_value(global_scope, "poop"));
+    // println!("Get value 1 {:?}", environment.get_value(global_scope, "pi"));
+    // println!("Get value 2 {:?}", environment.get_value(global_scope, "two_pi"));
+    // println!("Get value 3 {:?}", environment.get_value(global_scope, "poop"));
 
-    environment.assign_value(scope3, "poop", runtime::values::RtValue::NumberVal(12.0));
-    println!("Get value 3 {:?}", environment.get_value(scope3, "poop"));
+    // environment.assign_value(scope3, "poop", runtime::values::RtValue::NumberVal(12.0));
+    // println!("Get value 3 {:?}", environment.get_value(scope3, "poop"));
 
-    environment.declare_variable(scope3, "poop", runtime::values::RtValue::NumberVal(13.0));
+    // environment.declare_variable(scope3, "poop", runtime::values::RtValue::NumberVal(13.0));
 
-    println!("Get value 4 {:?}", environment.get_value(global_scope, "poop"));
-    println!("Get value 5 {:?}", environment.get_value(scope3, "poop"));
+    // println!("Get value 4 {:?}", environment.get_value(global_scope, "poop"));
+    // println!("Get value 5 {:?}", environment.get_value(scope3, "poop"));
 
     println!("Repl v0.15");
     //let src_code = "let x = ( 10 + 5 ) * 2".to_string();
