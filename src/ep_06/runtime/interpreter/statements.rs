@@ -11,7 +11,18 @@ pub fn evaluate_program(program : &AstProgram, environment: &mut Environment, sc
 }
 
 
-pub fn evaluate_var_declaration(delcaration : &AstVarDeclaration, environment: &mut Environment, scope : usize) -> RtValue {
+pub fn evaluate_var_declaration(declaration : &AstVarDeclaration, environment: &mut Environment, scope : usize) -> RtValue {
 
-    todo!()
+    // check clone
+    let value = match declaration.value.clone() {
+        Some(expr) => super::evaluate_expression(&expr, environment, scope),
+        None => RtValue::NullVal,
+    };
+
+    environment.declare_variable(
+        scope, 
+        declaration.identifier.as_str(), 
+        value, 
+        declaration.constant,
+     )
 }

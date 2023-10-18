@@ -1,10 +1,11 @@
-use std::{collections::HashMap};
+use std::{collections::HashMap, collections::HashSet};
 use super::values::RtValue;
 
 #[derive(Debug)]
 pub struct EnvironmentScope {
     pub parent: usize,
-    pub variables : HashMap<String,RtValue>
+    pub variables : HashMap<String,RtValue>,
+    pub constants : HashSet<String>,
 }
 
 impl EnvironmentScope {
@@ -12,6 +13,7 @@ impl EnvironmentScope {
         Self {
             parent,
             variables : HashMap::new(),
+            constants : HashSet::new(),
         }
     }
 
@@ -19,6 +21,9 @@ impl EnvironmentScope {
         self.variables.contains_key(name)
     }
 
+    pub fn is_constant(self : &Self, name : &str) -> bool {
+        self.constants.contains(name)
+    }
 
     pub fn assign(self : &mut Self, name : &str, value : RtValue) {
         *self.variables.get_mut(name).unwrap() = value;         
@@ -29,6 +34,11 @@ impl EnvironmentScope {
             println!("{} {} = {:?}", pre_str, v.0, v.1 )
         }
     }
+
+    pub fn add_constant(self : &mut Self, name : &str) -> bool {
+        self.constants.insert(name.into())
+    }
+
 }
 
 #[derive(Debug)]
@@ -48,9 +58,9 @@ impl Environment {
 
     pub fn create_global_scope( self: &mut Self) -> usize {
         let global_scope = self.add_scope(0);
-        self.declare_variable(global_scope, "null", RtValue::NullVal);
-        self.declare_variable(global_scope, "true", RtValue::Boolean(true));
-        self.declare_variable(global_scope, "false", RtValue::Boolean(false));
+        self.declare_variable(global_scope, "null", RtValue::NullVal, true);
+        self.declare_variable(global_scope, "true", RtValue::Boolean(true), true);
+        self.declare_variable(global_scope, "false", RtValue::Boolean(false), true);
         global_scope
     }
 
@@ -62,8 +72,7 @@ impl Environment {
     }
 
 
-    pub fn list_scope(self: &Self, scope_nr: usize) {
-        
+    pub fn list_scope(self: &Self, scope_nr: usize) {   
         let pre_str = " ";
         let scope = self.scopes.get(&scope_nr).expect(&format!("invalid scope: {}", scope_nr));
         println!( "{} scope: {} parent {}", pre_str, scope_nr, scope.parent );
@@ -71,12 +80,16 @@ impl Environment {
     }
 
     
-    pub fn declare_variable(self : &mut Self, scope: usize, name : &str, value : RtValue ) -> RtValue{
+    pub fn declare_variable(self : &mut Self, scope: usize, name : &str, value : RtValue, constant : bool ) -> RtValue{
         
         let scope = self.scopes.get_mut(&scope).expect(&format!("invalid scope: {}", scope));
 
         if !scope.variables.contains_key(name) {
+            
             scope.variables.insert(name.to_string(), value.clone());
+            if constant {
+                scope.add_constant(name);
+            }
         } else {
             panic!("Variable already exists: {}", name);
         }
@@ -86,10 +99,9 @@ impl Environment {
 
     pub fn get_value(self : &Self, scope: usize, name : &str) -> RtValue{
         let scope_nr = self.find_scope(scope, name);
-        if scope_nr == 0 {
-            RtValue::NullVal
-        } else {
-            self.scopes[&scope_nr].variables[name].clone()
+        match scope_nr != 0 {
+            true => self.scopes[&scope_nr].variables[name].clone(),
+            false => RtValue::NullVal,
         }
     }
 
@@ -99,6 +111,9 @@ impl Environment {
             panic!("Variable {} not found in scope {}", name, scope);
         }
         let scope = self.scopes.get_mut(&scope_nr).unwrap();
+        if scope.is_constant(name) {
+            panic!("Can't change constant value: {}", name);
+        }
         scope.assign(name, value);
     }
 

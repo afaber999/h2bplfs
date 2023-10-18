@@ -13,6 +13,6 @@ pub fn evaluate(stmt : &AstStatement, environment: &mut Environment, scope : usi
     match stmt {
         AstStatement::Program(program) => evaluate_program(&program, environment, scope),
         AstStatement::Expression(expression) => evaluate_expression(&expression, environment, scope),
-        AstStatement::VarDeclaration(declaration) => todo!(),
+        AstStatement::VarDeclaration(declaration) => evaluate_var_declaration(&declaration, environment, scope),
     }
 }
