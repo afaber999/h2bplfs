@@ -171,7 +171,6 @@ impl Parser {
             }
 
             if let Some( nt ) = tokens.peek() {
-                println!("CHECK TOKEN: {:?}", nt.kind);
                 if nt.kind == TokenKind::Eof {
                     break;
                 }
