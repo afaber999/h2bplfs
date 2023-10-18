@@ -4,5 +4,5 @@ pub enum RtValue {
     NullVal,
     NumberVal(f64),
     StringVal(String),
+    Boolean(bool),
 }
-

@@ -11,7 +11,8 @@ use crate::runtime::environment::Environment;
 fn repl() -> io::Result<()> {
     let mut interpreter = Interpreter::new();
     let mut environment = Environment::new();
-    let global_scope = environment.add_scope(0);
+    let global_scope = environment.create_global_scope();
+    
     let scope2 = environment.add_scope(global_scope);
     let scope3 = environment.add_scope(scope2);
     let scope4 = environment.add_scope(global_scope);

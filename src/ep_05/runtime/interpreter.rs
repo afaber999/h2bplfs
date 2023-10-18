@@ -47,7 +47,6 @@ impl Interpreter {
             AstExpression::Binary(expression) => self.evaluate_binary_expression(expression, environment, scope),
             AstExpression::Identifier(name) => environment.get_value(scope, &name.symbol),
             AstExpression::NumericLiteral(x) => RtValue::NumberVal(x.value),
-            AstExpression::NullLiteral(_) => RtValue::NullVal,
         }
     }
 

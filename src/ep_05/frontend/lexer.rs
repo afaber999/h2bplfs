@@ -9,12 +9,12 @@
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum TokenKind {
 	// Literal Types
-    Null,
 	Number,
 	Identifier,
 
 	// Keywords
 	Let,
+	Const,
 
 	// Grouping * Operators
 	BinaryOperator,
@@ -57,7 +57,7 @@ impl Keyword {
     } 
 }
 
-static KEYWORDS : [Keyword; 2] = [ Keyword::new( "let", TokenKind::Let),Keyword::new( "null", TokenKind::Null)];
+static KEYWORDS : [Keyword; 2] = [ Keyword::new( "let", TokenKind::Let),Keyword::new( "const", TokenKind::Let)];
 
 fn is_integer(x: &char) -> bool {
     x.is_numeric()

@@ -34,10 +34,6 @@ impl Parser {
         
         let next_token = Self::at(tokens);
         match next_token.kind {
-            TokenKind::Null => { 
-                let token = Self::eat(tokens);
-                Some(AstExpression::NullLiteral(AstNullLiteral{}))
-            }, 
             TokenKind::Number => { 
                 let token = Self::eat(tokens);
                 if let Ok(value) = token.value.parse::<f64>() {

@@ -10,7 +10,6 @@ pub enum AstExpression {
     Binary(AstBinaryExpression),
     Identifier(AstIdentifier),
     NumericLiteral(AstNumericLiteral),
-    NullLiteral(AstNullLiteral),
 }
 
 #[derive(Debug, Clone)]
@@ -28,10 +27,6 @@ pub struct AstIdentifier {
 #[derive(Debug, Clone)]
 pub struct AstNumericLiteral {
     pub value : f64,
-}
-
-#[derive(Debug, Clone)]
-pub struct AstNullLiteral {
 }
 
 #[derive(Debug, Clone)]

@@ -46,6 +46,14 @@ impl Environment {
         }
     }
 
+    pub fn create_global_scope( self: &mut Self) -> usize {
+        let global_scope = self.add_scope(0);
+        self.declare_variable(global_scope, "null", RtValue::NullVal);
+        self.declare_variable(global_scope, "true", RtValue::Boolean(true));
+        self.declare_variable(global_scope, "false", RtValue::Boolean(false));
+        global_scope
+    }
+
     pub fn add_scope( self: &mut Self, parent : usize ) -> usize {
         self.last_scope += 1;
         let new_scope = EnvironmentScope::new(parent);
