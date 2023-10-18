@@ -56,7 +56,7 @@ fn repl() -> io::Result<()> {
         let program = Parser::produce_ast(&buffer);
         println!("{:?}", program);
         
-        let rtval = interpreter.evaluate(&program);
+        let rtval = interpreter.evaluate(&program, &mut environment, global_scope);
         println!("{:?}", rtval);
 
     }
