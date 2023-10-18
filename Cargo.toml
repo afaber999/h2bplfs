@@ -25,6 +25,10 @@ path = "src/ep_04/main.rs"
 name = "ep_05"
 path = "src/ep_05/main.rs"
 
+[[bin]]
+name = "ep_06"
+path = "src/ep_06/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

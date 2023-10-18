@@ -12,22 +12,22 @@ fn repl() -> io::Result<()> {
     let mut interpreter = Interpreter::new();
     let mut environment = Environment::new();
     let global_scope = environment.create_global_scope();
-    
-    let scope2 = environment.add_scope(global_scope);
-    let scope3 = environment.add_scope(scope2);
-    let scope4 = environment.add_scope(global_scope);
+
+    // let scope2 = environment.add_scope(global_scope);
+    // let scope3 = environment.add_scope(scope2);
+    // let scope4 = environment.add_scope(global_scope);
 
 
-    environment.declare_variable(global_scope, "poop", runtime::values::RtValue::NumberVal(4.0));
-    environment.declare_variable(global_scope, "pi", runtime::values::RtValue::NumberVal(3.14159267));
-    environment.declare_variable(global_scope, "poopie", runtime::values::RtValue::NumberVal(4.0));
-    environment.declare_variable(scope4, "poopie1", runtime::values::RtValue::NumberVal(4.0));
+    // environment.declare_variable(global_scope, "four", runtime::values::RtValue::NumberVal(4.0));
+    // environment.declare_variable(global_scope, "pi", runtime::values::RtValue::NumberVal(3.14159267));
+    // environment.declare_variable(global_scope, "alsofour", runtime::values::RtValue::NumberVal(4.0));
+    // environment.declare_variable(scope4, "fourscopefour", runtime::values::RtValue::NumberVal(4.0));
 
 
-    environment.list_scope(global_scope);
-    environment.list_scope(scope2);
-    environment.list_scope(scope3);
-    environment.list_scope(scope4);
+    // environment.list_scope(global_scope);
+    // environment.list_scope(scope2);
+    // environment.list_scope(scope3);
+    // environment.list_scope(scope4);
 
 
     println!("Get value 1 {:?}", environment.get_value(global_scope, "pi"));
