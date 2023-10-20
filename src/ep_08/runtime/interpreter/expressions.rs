@@ -45,5 +45,7 @@ pub fn evaluate_expression(expression : &AstExpression, environment: &mut Enviro
         AstExpression::Identifier(name) => environment.get_value(scope, &name.symbol),
         AstExpression::NumericLiteral(x) => RtValue::NumberVal(x.value),
         AstExpression::Assignment(assignment) => evaluate_assignment_expression(assignment, environment, scope),
+        AstExpression::ObjectLiteral(_) => todo!(),
+        AstExpression::Property(_) => todo!(),
     }
 }

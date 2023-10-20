@@ -1,0 +1,304 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_01'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_01",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_01",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_01'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_01",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_01",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_02'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_02",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_02",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_02'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_02",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_02",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_03'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_03",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_03",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_03'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_03",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_03",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_04'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_04",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_04",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_04'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_04",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_04",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_05'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_05",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_05",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_05'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_05",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_05",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_06'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_06",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_06",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_06'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_06",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_06",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_07'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_07",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_07",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_07'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_07",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_07",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ep_08'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ep_08",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_08",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ep_08'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ep_08",
+                    "--package=ep_01"
+                ],
+                "filter": {
+                    "name": "ep_08",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

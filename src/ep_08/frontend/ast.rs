@@ -12,6 +12,19 @@ pub enum AstExpression {
     Binary(AstBinaryExpression),
     Identifier(AstIdentifier),
     NumericLiteral(AstNumericLiteral),
+    ObjectLiteral(AstObjectLiteral),
+    Property(AstProperty),
+}
+
+#[derive(Debug, Clone)]
+pub struct AstProperty {
+    pub key : String,
+    pub value : Option<Box<AstExpression>>,
+}
+
+#[derive(Debug, Clone)]
+pub struct AstObjectLiteral {
+    pub properties : Vec<AstProperty>,
 }
 
 

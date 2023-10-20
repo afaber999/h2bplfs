@@ -3,10 +3,10 @@ use crate::runtime::values::*;
 use super::environment::Environment;
 
 pub mod statements;
-pub mod expsressions;
+pub mod expressions;
 
 use statements::*;
-use expsressions::*;
+use expressions::*;
 
 pub fn evaluate(stmt : &AstStatement, environment: &mut Environment, scope : usize) -> RtValue {
 
