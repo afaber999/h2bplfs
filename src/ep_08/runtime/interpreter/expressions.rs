@@ -1,10 +1,11 @@
+use std::collections::HashMap;
 use std::ops::Deref;
 
 use crate::frontend::ast::*;
 use crate::runtime::values::*;
 use super::super::environment::Environment;
 
-pub fn evaluate_binary_expression(expression : &AstBinaryExpression, environment: &mut Environment, scope : usize) -> RtValue {
+fn evaluate_binary_expression(expression : &AstBinaryExpression, environment: &mut Environment, scope : usize) -> RtValue {
     let left_val = evaluate_expression(expression.left.as_ref(), environment, scope);
     let right_val = evaluate_expression(expression.right.as_ref(), environment, scope);
 
@@ -24,7 +25,7 @@ pub fn evaluate_binary_expression(expression : &AstBinaryExpression, environment
     }
 }
 
-pub fn evaluate_assignment_expression(assignment : &AstAssignmentExpression, environment: &mut Environment, scope : usize) -> RtValue {
+fn evaluate_assignment_expression(assignment : &AstAssignmentExpression, environment: &mut Environment, scope : usize) -> RtValue {
 
     let name;
     //let assignee = &assignment.assignee; 
@@ -38,6 +39,27 @@ pub fn evaluate_assignment_expression(assignment : &AstAssignmentExpression, env
     environment.assign_value(scope, &name, value)
 }
 
+fn evaluate_object_expression(object : &AstObjectLiteral, environment: &mut Environment, scope : usize) -> RtValue {
+
+    let mut properties = HashMap::new();
+
+    for ast_prop in &object.properties {
+        let k = ast_prop.key.clone(); 
+        let rt_val = match &ast_prop.value {
+            Some(expr) => {
+                evaluate_expression( &expr, environment, scope )
+            },
+            None =>  {
+                environment.get_value(scope, &k)
+            },
+        };
+        properties.insert(k, rt_val);
+    }
+
+    RtValue::Object(ObjectRtVal{ properties })
+}
+
+
 pub fn evaluate_expression(expression : &AstExpression, environment: &mut Environment, scope : usize) -> RtValue {
 
     match expression {
@@ -45,7 +67,7 @@ pub fn evaluate_expression(expression : &AstExpression, environment: &mut Enviro
         AstExpression::Identifier(name) => environment.get_value(scope, &name.symbol),
         AstExpression::NumericLiteral(x) => RtValue::NumberVal(x.value),
         AstExpression::Assignment(assignment) => evaluate_assignment_expression(assignment, environment, scope),
-        AstExpression::ObjectLiteral(_) => todo!(),
+        AstExpression::ObjectLiteral(object) => evaluate_object_expression(object, environment, scope),
         AstExpression::Property(_) => todo!(),
     }
 }
