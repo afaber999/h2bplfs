@@ -21,10 +21,10 @@ fn repl() -> io::Result<()> {
 
     let mut buffer = fs::read_to_string(file_path).expect("Can't read file");
     let program = Parser::produce_ast(&buffer);
-    println!("{:?}", program);
+    println!("{:#?}", program);
     
     let rtval = evaluate(&program, &mut environment, global_scope);
-    println!("{:?}", rtval);
+    println!("{:#?}", rtval);
     
     //let src_code = "let x = ( 10 + 5 ) * 2".to_string();
     loop {
@@ -41,7 +41,7 @@ fn repl() -> io::Result<()> {
         println!("{:?}", program);
         
         let rtval = evaluate(&program, &mut environment, global_scope);
-        println!("{:?}", rtval);
+        println!("{}", rtval);
 
     }
     Ok(())

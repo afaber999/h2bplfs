@@ -140,6 +140,6 @@ fn main() {
 
     println!("lexer, EP_01!");
     for token in tokens {
-        println!("Token: {:?}", token);
+        println!("Token: {:#?}", token);
     }
 }

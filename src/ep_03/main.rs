@@ -19,7 +19,7 @@ fn repl() -> io::Result<()> {
         }
 
         let program = Parser::produce_ast(&buffer);
-        println!("{:?}", program);
+        println!("{:#?}", program);
     }
     Ok(())
 }

@@ -50,26 +50,12 @@ impl Parser {
 
         println!("lexer, EP_01!");
         for token in tokens {
-            println!("Token: {:?}", token);
+            println!("Token: {:#?}", token);
         }    
             
         Program::new()
     }
 }
-
-
-// #[derive(Debug)]
-// pub struct Statement {
-//     kind: NodeType,
-// }
-
-// impl AstNode for Statement {
-
-// }
-
-
-
-
 
 
 fn main() {
